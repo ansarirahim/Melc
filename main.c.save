@@ -54,7 +54,7 @@ int ExtSegAdrF=0;
 int RecordTypes=0;
 char Datas[16];
 
-char recordTypes[3][6]={"Dat","Eof","EsA","SsA","ElA","SlA" };
+char recordTypes[6][3]={"Dat","Eof","EsA","SsA","ElA","SlA" };
 char * readline(FILE *fp, char *buffer)
 {
 int ByteCount=0;
@@ -107,10 +107,8 @@ AddressBuffer[1]=buffer[base+4];
 AddressBuffer[2]=buffer[base+5];
 AddressBuffer[4]=buffer[base+6];//,buffer[base+5],buffer[base+6]};
 Address=hex2int(AddressBuffer);
-DataTypeBuffer[0]=buffer[base+7];
-DataTypeBuffer[1]=buffer[base+8];
 DataType=hex2int(DataTypeBuffer);//((int)buffer[base+7])*16+(int)buffer[base+8];
-printf("\nDatatype=%d\n\n",DataType);
+printf("\nDatatype=%d",DataType);
 //printf("\n\nRecord type=%s",recordTypes+DataType);
 for(k=0;k<ByteCount*2;k++)
 putchar(buffer[base+9+k]);
@@ -138,12 +136,7 @@ while ((s = readline(file, 0)) != NULL)
 void main()//int argc, char *argv[])
 {
 int  rows=countlines("Flash.HEX");
-
-
-
 printf("LINES: %d\n",rows);
-
-printf("\n\nhi=%s",recordTypes[2]);
 ///char *p = malloc( sizeof(char) * (NO_OF_COL* rows + 1 ) );
 //char (*orderedIds)[NO_OF_COL+1]= malloc(rows * sizeof(*orderedIds));
 FILE *fp = fopen("Flash.HEX","r");;
